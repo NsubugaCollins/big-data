@@ -72,7 +72,7 @@ def clean_data():
     
     print("   -> Populating patents table...")
     cursor.execute("""
-        INSERT INTO patents (patent_id, title, abstract, grant_date, grant_year, filing_date, filing_year)
+        INSERT OR IGNORE INTO patents (patent_id, title, abstract, grant_date, grant_year, filing_date, filing_year)
         SELECT 
             p.patent_id, 
             COALESCE(NULLIF(TRIM(p.patent_title), ''), 'Unknown Title'), 
@@ -90,7 +90,7 @@ def clean_data():
     
     print("   -> Populating inventors table...")
     cursor.execute("""
-        INSERT INTO inventors (inventor_id, name, country)
+        INSERT OR IGNORE INTO inventors (inventor_id, name, country)
         SELECT DISTINCT
             i.inventor_id,
             COALESCE(NULLIF(TRIM(IFNULL(i.disambig_inventor_name_first, '') || ' ' || IFNULL(i.disambig_inventor_name_last, '')), ''), 'Unknown Inventor'),
@@ -103,7 +103,7 @@ def clean_data():
     
     print("   -> Populating companies table...")
     cursor.execute("""
-        INSERT INTO companies (company_id, name)
+        INSERT OR IGNORE INTO companies (company_id, name)
         SELECT DISTINCT
             assignee_id,
             COALESCE(NULLIF(TRIM(disambig_assignee_organization), ''), 'Unknown Company')

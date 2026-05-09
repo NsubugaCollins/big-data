@@ -1,0 +1,69 @@
+{
+    "total_patents": 100000,
+    "top_inventors": [
+        {
+            "name": "Xiaogang Chen",
+            "patents": 2
+        },
+        {
+            "name": "Lei Wang",
+            "patents": 2
+        },
+        {
+            "name": "Kenneth James Miller",
+            "patents": 2
+        },
+        {
+            "name": "Hakseong Kim",
+            "patents": 2
+        },
+        {
+            "name": "Zunqiang Fan",
+            "patents": 1
+        }
+    ],
+    "top_companies": [
+        {
+            "name": "SAMSUNG ELECTRONICS CO., LTD.",
+            "patents": 30
+        },
+        {
+            "name": "International Business Machines Corporation",
+            "patents": 25
+        },
+        {
+            "name": "TOYOTA JIDOSHA KABUSHIKI KAISHA",
+            "patents": 9
+        },
+        {
+            "name": "TAIWAN SEMICONDUCTOR MANUFACTURING COMPANY LTD.",
+            "patents": 9
+        },
+        {
+            "name": "QUALCOMM Incorporated",
+            "patents": 9
+        }
+    ],
+    "top_countries": [
+        {
+            "country": "Us",
+            "share": 0.01
+        },
+        {
+            "country": "Jp",
+            "share": 0.0
+        },
+        {
+            "country": "Kr",
+            "share": 0.0
+        },
+        {
+            "country": "Cn",
+            "share": 0.0
+        },
+        {
+            "country": "De",
+            "share": 0.0
+        }
+    ]
+}

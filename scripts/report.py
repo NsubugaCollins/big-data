@@ -68,13 +68,11 @@ def generate_reports():
     # 4. Export CSV files
     top_inventors.to_csv('reports/top_inventors.csv', index=False)
     top_companies.to_csv('reports/top_companies.csv', index=False)
-    grant_trends.to_csv('reports/grant_trends.csv', index=False)
-    top_countries.to_csv('reports/top_countries.csv', index=False)
+    top_countries.to_csv('reports/country_trends.csv', index=False)
     
     # 5. Generate JSON Report
     json_data = {
         "total_patents": total_patents,
-        "average_patents_per_company": round(float(avg_patents_per_company), 2) if avg_patents_per_company else 0,
         "top_inventors": [
             {"name": row['name'], "patents": int(row['total_patents'])} 
             for _, row in top_inventors.head(10).iterrows()
@@ -84,7 +82,7 @@ def generate_reports():
             for _, row in top_companies.head(10).iterrows()
         ],
         "top_countries": [
-            {"country": row['country'], "share": round(row['total_patents'] / total_patents, 3)}
+            {"country": row['country'], "share": round(row['total_patents'] / total_patents, 3) if total_patents > 0 else 0}
             for _, row in top_countries.head(10).iterrows()
         ]
     }
@@ -93,24 +91,21 @@ def generate_reports():
         json.dump(json_data, f, indent=4)
         
     # 6. Console Report (Terminal Output)
-    print("\n================== ADVANCED PATENT REPORT ===================")
-    print(f"Total Patents Analyzed: {total_patents}")
-    print(f"Avg Patents per Company: {round(float(avg_patents_per_company), 2) if avg_patents_per_company else 0}")
+    print("================== PATENT REPORT ===================")
+    print(f"Total Patents: {total_patents:,}")
     
-    print("\nTop 5 Inventors:")
-    for idx, row in top_inventors.head(5).iterrows():
-        print(f"  {idx+1}. {row['name']} ({row['total_patents']} patents)")
-        
-    print("\nTop 5 Companies:")
-    for idx, row in top_companies.head(5).iterrows():
-        print(f"  {idx+1}. {row['name']} ({row['total_patents']} patents)")
-        
-    print("\nTop 5 Countries:")
-    for idx, row in top_countries.head(5).iterrows():
-        print(f"  {idx+1}. {row['country']} ({round(row['total_patents']/total_patents*100, 1)}%)")
-    print("============================================================\n")
+    inventors_str = " ".join([f"{idx+1}. {row['name']} - {row['total_patents']}" for idx, row in top_inventors.head(2).iterrows()])
+    print(f"Top Inventors: {inventors_str}")
     
-    print("Reports generated successfully in the 'reports' directory.")
+    companies_str = " ".join([f"{idx+1}. {row['name']} - {row['total_patents']}" for idx, row in top_companies.head(1).iterrows()])
+    print(f"Top Companies: {companies_str}")
+    
+    countries_str = " ".join([f"{idx+1}. {row['country']}" for idx, row in top_countries.head(2).iterrows()])
+    print(f"Top Countries: {countries_str}")
+    
+    print("\nJSON Report Example Output:")
+    print(json.dumps(json_data, indent=4))
+    
     conn.close()
 
 if __name__ == "__main__":

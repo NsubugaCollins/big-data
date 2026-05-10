@@ -142,20 +142,20 @@ with tab1:
     # We now have grant_year and filing_year
     trends_df = load_data("""
         SELECT 
-            COALESCE(grant_year, filing_year) as year,
+            COALESCE(grant_year, filing_year) as activity_year,
             COUNT(CASE WHEN grant_year IS NOT NULL THEN 1 END) as grants,
             COUNT(CASE WHEN filing_year IS NOT NULL THEN 1 END) as filings
         FROM patents 
-        WHERE year IS NOT NULL
-        GROUP BY year 
-        ORDER BY year
+        WHERE grant_year IS NOT NULL OR filing_year IS NOT NULL
+        GROUP BY activity_year 
+        ORDER BY activity_year
     """)
     
     if not trends_df.empty:
         fig = go.Figure()
-        fig.add_trace(go.Scatter(x=trends_df['year'], y=trends_df['filings'], name='Filings',
+        fig.add_trace(go.Scatter(x=trends_df['activity_year'], y=trends_df['filings'], name='Filings',
                                  line=dict(color='#3b82f6', width=4), fill='tozeroy'))
-        fig.add_trace(go.Scatter(x=trends_df['year'], y=trends_df['grants'], name='Grants',
+        fig.add_trace(go.Scatter(x=trends_df['activity_year'], y=trends_df['grants'], name='Grants',
                                  line=dict(color='#10b981', width=4, dash='dot')))
         
         fig.update_layout(

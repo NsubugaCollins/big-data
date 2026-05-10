@@ -13,6 +13,7 @@ data/
 
 # SQLite
 *.db
+!patent_database_sample.db
 *.db-journal
 *.db-shm
 *.db-wal

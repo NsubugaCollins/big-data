@@ -7,9 +7,15 @@ import plotly.graph_objects as go
 
 def load_data(query, params=None):
     # Use absolute path relative to this file to avoid issues with different CWDs
-    db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'patent_database.db')
-    if not os.path.exists(db_path):
-        st.error(f"Database not found at {db_path}. Please run `python main.py` first.")
+    main_db = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'patent_database.db')
+    sample_db = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'patent_database_sample.db')
+    
+    if os.path.exists(main_db):
+        db_path = main_db
+    elif os.path.exists(sample_db):
+        db_path = sample_db
+    else:
+        st.error(f"Database not found. Please run the extraction locally to generate patent_database.db.")
         return pd.DataFrame()
         
     conn = sqlite3.connect(db_path)

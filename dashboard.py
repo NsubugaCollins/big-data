@@ -6,7 +6,8 @@ import plotly.express as px
 import plotly.graph_objects as go
 
 def load_data(query, params=None):
-    db_path = 'patent_database.db'
+    # Use absolute path relative to this file to avoid issues with different CWDs
+    db_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'patent_database.db')
     if not os.path.exists(db_path):
         st.error(f"Database not found at {db_path}. Please run `python main.py` first.")
         return pd.DataFrame()

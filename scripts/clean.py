@@ -22,7 +22,9 @@ def clean_data():
     # Connect to SQLite
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
-    cursor.execute("PRAGMA temp_store = 1;")
+    cursor.execute("PRAGMA temp_store = MEMORY;")
+    cursor.execute("PRAGMA synchronous = OFF;")
+    cursor.execute("PRAGMA journal_mode = WAL;")
     
     # 1. Initialize schema
     with open(schema_path, 'r') as f:
@@ -42,6 +44,7 @@ def clean_data():
         'staging_assignee': ('g_assignee_disambiguated.tsv', ['patent_id', 'assignee_id', 'disambig_assignee_organization'])
     }
     
+    ROW_LIMIT = 2000000
     CHUNK_SIZE = 50000
     
     for table_name, (tsv_filename, usecols) in staging_files.items():
@@ -55,6 +58,9 @@ def clean_data():
         for chunk in pd.read_csv(tsv_path, sep="\t", dtype=str, usecols=usecols, chunksize=CHUNK_SIZE):
             chunk.to_sql(table_name, conn, if_exists='append', index=False)
             total_rows += len(chunk)
+            if total_rows >= ROW_LIMIT:
+                print(f"   -> Reached limit of {ROW_LIMIT} rows for {table_name}. Stopping.")
+                break
         print(f"   Successfully loaded {total_rows} rows into {table_name}.")
         
     # Create indexes for fast joins

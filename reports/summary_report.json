@@ -1,69 +1,130 @@
 {
-    "total_patents": 100000,
+    "total_patents": 2000000,
+    "average_patents_per_company": 6.06,
     "top_inventors": [
         {
-            "name": "Xiaogang Chen",
-            "patents": 2
+            "name": "Shunpei Yamazaki",
+            "patents": 612
         },
         {
-            "name": "Lei Wang",
-            "patents": 2
+            "name": "Kia Silverbrook",
+            "patents": 402
         },
         {
-            "name": "Kenneth James Miller",
-            "patents": 2
+            "name": "Tao Luo",
+            "patents": 379
         },
         {
-            "name": "Hakseong Kim",
-            "patents": 2
+            "name": "Junyi Li",
+            "patents": 241
         },
         {
-            "name": "Zunqiang Fan",
-            "patents": 1
+            "name": "Jonathan P. Ive",
+            "patents": 236
+        },
+        {
+            "name": "Bartley K. Andre",
+            "patents": 228
+        },
+        {
+            "name": "Wei Wang",
+            "patents": 219
+        },
+        {
+            "name": "Kangguo Cheng",
+            "patents": 219
+        },
+        {
+            "name": "Peter Gaal",
+            "patents": 216
+        },
+        {
+            "name": "Richard P. Howarth",
+            "patents": 208
         }
     ],
     "top_companies": [
         {
             "name": "SAMSUNG ELECTRONICS CO., LTD.",
-            "patents": 30
+            "patents": 11549
         },
         {
             "name": "International Business Machines Corporation",
-            "patents": 25
+            "patents": 10614
         },
         {
-            "name": "TOYOTA JIDOSHA KABUSHIKI KAISHA",
-            "patents": 9
+            "name": "Canon Kabushiki Kaisha",
+            "patents": 4170
+        },
+        {
+            "name": "Apple Inc.",
+            "patents": 3678
+        },
+        {
+            "name": "HITACHI, LTD.",
+            "patents": 3475
+        },
+        {
+            "name": "Intel Corporation",
+            "patents": 3337
+        },
+        {
+            "name": "LG ELECTRONICS INC.",
+            "patents": 3054
+        },
+        {
+            "name": "SONY GROUP CORPORATION",
+            "patents": 2996
         },
         {
             "name": "TAIWAN SEMICONDUCTOR MANUFACTURING COMPANY LTD.",
-            "patents": 9
+            "patents": 2955
         },
         {
             "name": "QUALCOMM Incorporated",
-            "patents": 9
+            "patents": 2951
         }
     ],
     "top_countries": [
         {
-            "country": "Us",
-            "share": 0.01
+            "country": "US",
+            "share": 0.487
         },
         {
-            "country": "Jp",
-            "share": 0.0
+            "country": "JP",
+            "share": 0.169
         },
         {
-            "country": "Kr",
-            "share": 0.0
+            "country": "DE",
+            "share": 0.058
         },
         {
-            "country": "Cn",
-            "share": 0.0
+            "country": "KR",
+            "share": 0.054
         },
         {
-            "country": "De",
-            "share": 0.0
+            "country": "CN",
+            "share": 0.043
+        },
+        {
+            "country": "TW",
+            "share": 0.027
+        },
+        {
+            "country": "FR",
+            "share": 0.021
+        },
+        {
+            "country": "GB",
+            "share": 0.021
+        },
+        {
+            "country": "CA",
+            "share": 0.02
+        },
+        {
+            "country": "IN",
+            "share": 0.011
         }
     ]
 }
